@@ -1,12 +1,21 @@
 from rest_framework import serializers
 from .models import Category, Product
+from django.contrib.auth.models import User
 
 
 
 class CategoryListSerializer(serializers.ModelSerializer):
-    # lft = serializers.SlugRelatedField(slug_field='lft', read_only=True)
     class Meta:
         model = Category
-        # queryset = Category.objects.all()
-        
-        exclude = "modified"
+        exclude = ("modified",)
+
+
+class CreateProductSerializer(serializers.ModelSerializer):
+    class Meta:
+        model=Product
+        exclude=("modified",)
+
+
+class ProductSerializer(serializers.ModelSerializer):
+    seller = serializers.SlugRelatedField(slug_field="username", queryset=User.objects)
+    category = serializers.SerializerMethodField()

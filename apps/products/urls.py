@@ -9,8 +9,6 @@ app_name = "products"
 urlpatterns = [
     path('', include(router.urls)),
     path("category/", views.CategoryListAPIView.as_view()),
-
+    path("create/product/", views.CreateProductAPIView.as_view()),
     
-    
-
 ]
