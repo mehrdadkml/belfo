@@ -3,7 +3,7 @@ from django.db import models
 # Create your models here.
 from django.contrib.auth import get_user_model
 from mptt.models import MPTTModel,TreeForeignKey
-from ..core.models import Extensions
+from ..core.models import Extensions,TimeStampedModel
 
 User=get_user_model()
 
@@ -24,6 +24,7 @@ class Category(MPTTModel):
 
 
 class Product(Extensions):
+    # username=models.ForeignKey(User,related_name="username",on_delete=models.CASCADE)
     seller=models.ForeignKey(User,related_name="user_product",on_delete=models.CASCADE)
     category=TreeForeignKey(Category,related_name="produc_category",on_delete=models.CASCADE)
     title = models.CharField(max_length=250)
@@ -36,6 +37,10 @@ class Product(Extensions):
 
     def __str__(self):
         return str(self.uuid)
+
+class ProductViews(TimeStampedModel):
+    ip = models.CharField(max_length=250)
+    product = models.ForeignKey(Product, related_name="product_views", on_delete=models.CASCADE)
 
 
 
