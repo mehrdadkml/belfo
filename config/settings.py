@@ -49,6 +49,7 @@ INSTALLED_APPS = [
     'apps.products',
     'django_filters',
     'haystack',
+    'apps.order',
 
     
 

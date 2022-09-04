@@ -61,6 +61,11 @@ class Address(TimeStampedModel):
     building_number=models.IntegerField(blank=False,null=False,validators=[MinValueValidator(1)])
     apartment_number = models.IntegerField(blank=True, null=True, validators=[MinValueValidator(1)])
 
+    def __str__(self):
+        return self.user
+
+
+
 
 
 

@@ -15,3 +15,8 @@ urlpatterns = [
     path("product/views/", views.ProductViewsAPIView.as_view()),
     
 ]
+
+urlpatterns += [
+    path('search/', include('haystack.urls')),
+]
+
